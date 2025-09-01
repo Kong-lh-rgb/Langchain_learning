@@ -4,7 +4,6 @@ from dotenv import load_dotenv
 from langchain_core.messages import SystemMessage
 load_dotenv()
 from langchain_google_genai import GoogleGenerativeAI
-from langchain_zhipuai import ZhipuAI
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.output_parsers import StrOutputParser
 llm = GoogleGenerativeAI(model="gemini-2.5-pro")
