@@ -11,4 +11,4 @@ chain = prompt | llm | StrOutputParser()
 # 使用 stream() 方法，逐块打印输出
 for chunk in chain.stream({"animal": "猫"}):
     time.sleep(2)
-    print(chunk, end="", flush=True)
+    print(chunk, end="|", flush=True)
