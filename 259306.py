@@ -1,0 +1,27 @@
+from langchain_core.example_selectors import LengthBasedExampleSelector
+from langchain_core.prompts import FewShotPromptTemplate, PromptTemplate
+examples = [
+    {"input": "happy", "output": "sad"},
+    {"input": "tall", "output": "short"},
+    {"input": "energetic", "output": "lethargic"},
+    {"input": "sunny", "output": "gloomy"},
+    {"input": "windy", "output": "calm"},
+]
+example_prompt = PromptTemplate(
+    input_variables=["input", "output"],
+    template="Input: {input}\nOutput: {output}",
+)
+example_selector = LengthBasedExampleSelector(
+    examples = examples,
+    example_prompt = example_prompt,
+    max_lenhgth = 25
+)
+dynamic_prompt = FewShotPromptTemplate(
+    # We provide an ExampleSelector instead of examples.
+    example_selector=example_selector,
+    example_prompt=example_prompt,
+    prefix="Give the antonym of every input",
+    suffix="Input: {adjective}\nOutput:",
+    input_variables=["adjective"],
+)
+print(dynamic_prompt.format(adjective="big"))
